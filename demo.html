@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- taiwind & daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="container mx-10 my-10 space-y-5">
+    <!-- Input section -->
+    <section>
+        <p id="nameText">Your name here</p>
+        <div>
+            <input id="input" type="text">
+        </div>
+        <button id="button" class="btn">Submit</button>
+    </section>
+
+    <!-- Comments Section -->
+
+    <section>
+        <div id="comment">
+            <p>---Write Your comments here---</p>
+        </div>
+        <textarea name="" id="textArea" cols="22" rows="5"></textarea> <br>
+        <button id="btn-submit" class="btn btn-outline btn-primary">Submit</button>
+    </section>
+
+    <!-- Delete Section -->
+    <div>
+        <h1 id="deleteLine" class="text-4xl">Delete this Line</h1>
+    </div>
+    <div>
+        <input type="text" name="" id="deleteInput" placeholder="please type DELETE"
+            class="p-2 rounded-full text-center">
+    </div>
+    <div>
+        <button id="deleteButton" class="btn" disabled>Delete</button>
+    </div>
+
+    <!-- LETS CALCULATE SOME BASIC MATH -->
+
+    <div class="space-y-2 text-center">
+        <input type="text" name="" id="firstInput" placeholder="first-input" class="text-center rounded-full h-8"><br>
+        <input type="text" name="" id="operand" placeholder="operand-input(+ - x / %)"
+            class="text-center rounded-full h-8"> <br>
+        <input type="text" name="" id="secondInput" placeholder="second-input" class="text-center rounded-full h-8">
+        <br>
+        <button id="calculate-btn" class="btn">Calculate</button>
+        <p>Your calculation result is <span id="result" class="text-red-600"></span></p>
+    </div>
+
+
+    <script>
+        document.getElementById('button').addEventListener('click', function () {
+            const element = document.getElementById('input');
+            const elementText = element.value;
+
+            const name = document.getElementById('nameText');
+            name.innerText = elementText;
+
+            element.value = '';
+        });
+        document.getElementById('btn-submit').addEventListener('click', function () {
+            const element = document.getElementById('textArea');
+            const elementText = element.value;
+
+            const comments = document.getElementById('comment');
+            const commentText = document.createElement('p');
+            commentText.innerText = elementText;
+            comments.appendChild(commentText);
+            element.value = '';
+
+
+        })
+
+        document.getElementById('deleteButton').addEventListener('click', function () {
+            const element = document.getElementById('deleteInput');
+            const elementText = element.value;
+
+            const deleteLine = document.getElementById('deleteLine');
+            const deleteButton = document.getElementById('deleteButton'); // Added this line to get deleteButton
+
+            if (elementText === 'DELETE') {
+                deleteLine.classList.add('hidden');
+            }
+            else {
+
+            }
+            element.value = '';
+        });
+
+        document.getElementById('deleteInput').addEventListener('keyup', function (event) {
+            const deleteConfirm = event.target.value;
+            const deleteBtn = document.getElementById('deleteButton');
+            if (deleteConfirm === 'DELETE') {
+                deleteBtn.removeAttribute('disabled');
+            }
+            else {
+                deleteBtn.setAttribute('disabled', true);
+            }
+        });
+
+        document.getElementById('calculate-btn').addEventListener('click', function () {
+            const a = document.getElementById('firstInput');
+            const x = parseFloat(a.value);
+            const b = document.getElementById('secondInput');
+            const y = parseFloat(b.value);
+            const operandInput = document.getElementById('operand');
+            const operand = operandInput.value
+            const result = document.getElementById('result');
+
+
+            if (!isNaN(x) && !isNaN(y) && operand === '+') {
+                const z = x + y;
+                result.innerText = z;
+            }
+            if (!isNaN(x) && !isNaN(y) && operand === '-') {
+                const z = x - y;
+                result.innerText = z;
+            }
+            if (!isNaN(x) && !isNaN(y) && operand === '*') {
+                const z = x * y;
+                result.innerText = z;
+            }
+            if (!isNaN(x) && !isNaN(y) && operand === '/') {
+                const z = x / y;
+                result.innerText = z;
+            }
+
+            else {
+                const z = "---invalid result!!! please type a valid input---"
+                result.innerText = z;
+                result.classList.add('')
+                a.value = '';
+                b.value = '';
+                operand.value = '';
+
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
+
+echo "# domPractice" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/F-Zaman-Rafi/domPractice.git
+git push -u origin main
