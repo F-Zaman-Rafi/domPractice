@@ -46,12 +46,12 @@
 
     <div class="space-y-2 text-center">
         <input type="text" name="" id="firstInput" placeholder="first-input" class="text-center rounded-full h-8"><br>
-        <input type="text" name="" id="operand" placeholder="operand-input(+ - x / %)"
+        <input type="text" name="" id="operand" placeholder="operand-input(+ - x / )"
             class="text-center rounded-full h-8"> <br>
         <input type="text" name="" id="secondInput" placeholder="second-input" class="text-center rounded-full h-8">
         <br>
         <button id="calculate-btn" class="btn">Calculate</button>
-        <p>Your calculation result is <span id="result" class="text-red-600"></span></p>
+        <p>Your calculation result is <span id="result"></span></p>
     </div>
 
 
@@ -111,37 +111,33 @@
             const b = document.getElementById('secondInput');
             const y = parseFloat(b.value);
             const operandInput = document.getElementById('operand');
-            const operand = operandInput.value
+            const operand = operandInput.value;
             const result = document.getElementById('result');
 
-
-            if (!isNaN(x) && !isNaN(y) && operand === '+') {
-                const z = x + y;
-                result.innerText = z;
-            }
-            if (!isNaN(x) && !isNaN(y) && operand === '-') {
-                const z = x - y;
-                result.innerText = z;
-            }
-            if (!isNaN(x) && !isNaN(y) && operand === '*') {
-                const z = x * y;
-                result.innerText = z;
-            }
-            if (!isNaN(x) && !isNaN(y) && operand === '/') {
-                const z = x / y;
-                result.innerText = z;
-            }
-
-            else {
-                const z = "---invalid result!!! please type a valid input---"
-                result.innerText = z;
-                result.classList.add('')
-                a.value = '';
-                b.value = '';
-                operand.value = '';
+            if (!isNaN(x) && !isNaN(y)) {
+                if (operand === '+') {
+                    const z = x + y;
+                    result.innerText = z;
+                } else if (operand === '-') {
+                    const z = x - y;
+                    result.innerText = z;
+                } else if (operand === '*') {
+                    const z = x * y;
+                    result.innerText = z;
+                } else if (operand === '/') {
+                    const z = x / y;
+                    result.innerText = z;
+                } else {
+                    const z = "---invalid result!!! please type a valid input---";
+                    result.innerText = z;
+                    result.classList.add('text-red-600');
+                    a.value = '';
+                    b.value = '';
+                    operandInput.value = '';
+                }
 
             }
-        })
+        });
 
 
 
@@ -149,11 +145,3 @@
 </body>
 
 </html>
-
-echo "# domPractice" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/F-Zaman-Rafi/domPractice.git
-git push -u origin main
